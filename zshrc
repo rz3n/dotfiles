@@ -1,4 +1,4 @@
-## If you come from bash you might have to change your $PATH.
+  ## If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 ## Path to your oh-my-zsh installation.
@@ -9,7 +9,11 @@
 ## ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir rbenv vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir rbenv)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs host time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs host)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
 
 CASE_SENSITIVE="true"
 # ENABLE_CORRECTION="true"
@@ -19,7 +23,6 @@ CASE_SENSITIVE="true"
 
 ## Plugins
 plugins=(
-  aws
   docker
   docker-compose
   docker-machine
@@ -28,7 +31,6 @@ plugins=(
   nmap
   sudo
   systemd
-  tmux
   ubuntu
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -162,6 +164,10 @@ isodd() {
 
 ## aliases
 ## ----------------------------------------------------------------------------
+alias tmp='cd /tmp'
+
+alias docker='sudo docker'
+alias docker-compose='sudo docker-compose'
 
 alias apt-get='apt'
 alias apt='sudo apt'
