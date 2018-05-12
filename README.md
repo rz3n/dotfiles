@@ -1,4 +1,4 @@
-== my dotfiles
+## my dotfiles
 
 This is a simple example of dotfiles. The most important thing is the *bootstrap.py* script.
 
@@ -6,8 +6,8 @@ The script will copy all files (you can define exceptions :)) in his directory. 
 
 The difference is. This script go down in the directory tree creating directories and linking files.
 
-For example:
-:You already have a .config file, but you don't want keep all those files in your dotfiles repository. This script will only create links to the wanted files.
+## #For example:
+You already have a .config file, but you don't want keep all those files in your dotfiles repository. This script will only create links to the wanted files.
 
 Thank you for reading this and trying use my script. Feel free to make suggestions or submit a pull request to implement your ideas.
 
