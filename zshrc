@@ -1,38 +1,52 @@
-  ## If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-## Path to your oh-my-zsh installation.
+## oh-my-zsh folder
   export ZSH=~/.oh-my-zsh
 
+## history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+## add timestamps to history
+setopt EXTENDED_HISTORY
+setopt PROMPT_SUBST
+setopt CORRECT
+setopt COMPLETE_IN_WORD
+
+## adds history
+setopt APPEND_HISTORY
+
+## adds history incrementally and share it across sessions
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+## don't record dupes in history
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_VERIFY
+setopt HIST_EXPIRE_DUPS_FIRST
+
 ## themes
-## See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-## ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir rbenv)
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs host time)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs host)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
 
 CASE_SENSITIVE="true"
-# ENABLE_CORRECTION="true"
 # COMPLETION_WAITING_DOTS="true"
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# ENABLE_CORRECTION="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 ## Plugins
 plugins=(
-  docker
-  docker-compose
-  docker-machine
   git
-  github
-  nmap
-  sudo
-  systemd
-  ubuntu
-  zsh-autosuggestions
+#  github
+#  zsh-autosuggestions
   zsh-syntax-highlighting
 )
 
@@ -41,22 +55,16 @@ source $ZSH/oh-my-zsh.sh
 ## User configuration
 ## --------------------------------------------------------
 # export LANG=en_US.UTF-8
+export LANG=en_CA.UTF-8
 
 ## Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-## ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export EDITOR='vim'
 
 
 ## functions
 ## --------------------------------------------------------
 
-# function to extract files
+## function to extract files
 extract () {
   if [ -f $1 ] ; then
     case $1 in
@@ -79,13 +87,7 @@ extract () {
   fi
 }
 
-# function to show external ip address
-meuip () {
-  curl 'meuip.gtek.com.br'
-  echo
-}
-
-# function to generate secure password
+## function to generate secure password
 password () {
   date +%s | sha256sum | base64 | head -c 32 ; echo
   date +%s | sha512sum | base64 | head -c 15 ; echo
@@ -93,12 +95,12 @@ password () {
   </dev/urandom tr -dc '12345!@*)%qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c15; echo ""
 }
 
-# function to generate puppet passwords
+## function to generate puppet passwords
 password-puppet () {
   mkpasswd -m sha-512 $1
 }
 
-# function to show all facebook asn's
+## function to show all facebook asn's
 facebook-asn () {
   whois -h whois.radb.net -- '-i origin AS32934' | grep -Eo "([0-9.]+){4}/[0-9]+"
 }
@@ -106,8 +108,13 @@ get-asn () {
   whois -h whois.radb.net -- "-i origin $1" | grep -Eo "([0-9.]+){4}/[0-9]+"
 }
 
+## remove all comments from file
+rmcomment () {
+  cp $1 ${1}.bak
+  grep -v "#" $1 > ${1}.nocomment
+}
 
-# history with grep
+## history with grep
 h() {
   if [ -z "$1" ]
   then
@@ -117,12 +124,7 @@ h() {
   fi
 }
 
-# sync
-sync() {
-  echo "rsync --exclude '*.abc' -avz -e ssh myname@servername:foldertocpy ."
-}
-
-# apt-clean
+## apt-clean
 apt-clean() {
   sudo apt-get clean
   sudo apt-get autoclean
@@ -130,42 +132,26 @@ apt-clean() {
   sudo apt-get clean cache
 }
 
-# apt-rebuild
+## apt-rebuild
 apt-rebuild() {
-#   sudo apt-get -o Dpkg::Options::="--force-confmiss" install --reinstall $1
   sudo apt-get --reinstall -o Dpkg::Options::="--force-confask" install $1
 }
 
-# youtube-playlist
-music-yt() {
-  mpsyt
-}
-
-# youtube-dl
-youtube-dl-pl-mp3() {
-  youtube-dl --extract-audio --audio-format mp3 -o %\(title\)s.%\(ext\)s $1
-}
-
-# update
+## update
 update() {
   sudo snap refresh
   sudo apt update
   sudo apt dist-upgrade
 }
 
+## reload rc configurations
 reloadrc() {
   source ~/.zshrc
-}
-
-isodd() {
-  sudo dd bs=4M if=$1 of=$2
 }
 
 
 ## aliases
 ## ----------------------------------------------------------------------------
-alias tmp='cd /tmp'
-
 alias docker='sudo docker'
 alias docker-compose='sudo docker-compose'
 
