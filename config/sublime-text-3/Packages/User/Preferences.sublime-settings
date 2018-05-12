@@ -1,0 +1,34 @@
+{
+	"auto_indent": true,
+	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
+	"default_encoding": "UTF-8",
+	"detect_indentation": true,
+	"font_face": "Source Code Pro",
+	"font_size": 9,
+	"git_executables":
+	{
+		"git":
+		[
+			"/usr/bin/git"
+		],
+		"git_flow":
+		[
+			"/usr/bin/git",
+			"flow"
+		],
+		"legit":
+		[
+			"legit"
+		]
+	},
+	"highlight_line": true,
+	"indent_subsequent_lines": true,
+	"match_brackets": true,
+	"match_brackets_content": true,
+	"scroll_speed": 0,
+	"tab_size": 2,
+	"theme": "Nexus.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_automatic_white_space": true,
+	"trim_trailing_white_space_on_save": true
+}
