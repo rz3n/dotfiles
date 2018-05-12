@@ -1,0 +1,20 @@
+Host *
+#	port 22
+#	VisualHostKey yes
+	Compression yes
+	StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+	IdentitiesOnly=yes
+
+Host bitbucket.org
+	User git
+	IdentityFile ~/.ssh/bitbucket
+
+Host github.com
+	User git
+	IdentityFile ~/.ssh/github
+
+Host gitlab.com
+	User git
+	IdentityFile ~/.ssh/gitlab
+
