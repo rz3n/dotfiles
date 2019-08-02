@@ -1,4 +1,3 @@
-
 ## oh-my-zsh folder
   export ZSH=~/.oh-my-zsh
 
@@ -89,10 +88,10 @@ extract () {
 
 ## function to generate secure password
 password () {
-  date +%s | sha256sum | base64 | head -c 32 ; echo
-  date +%s | sha512sum | base64 | head -c 15 ; echo
-  date | sha512sum | base64 | head -c 10 ; echo
-  </dev/urandom tr -dc '12345!@*)%qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c15; echo ""
+  openssl rand -base64 32
+  openssl rand -base64 15
+  openssl rand -base64 10
+  </dev/urandom tr -dc '!@*)%12345qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c15; echo ""
 }
 
 ## function to generate puppet passwords
